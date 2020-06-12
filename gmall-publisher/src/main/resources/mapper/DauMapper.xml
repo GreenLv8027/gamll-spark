@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
+一个sql语句会执行, 得到数据, 服务层如何到到这个sql执行的结果?
+
+-->
+<mapper namespace="com.atguigu.gmallpublisher.mapper.DauMapper">
+    <select id="getDau" resultType="java.lang.Long">
+        select count(*) from GMALL_DAU where LOGDATE=#{date }
+    </select>
+
+    <select id="getHourDau" resultMap="hourDauList">
+        select  LOGHOUR, count(*) COUNT FROM GMALL_DAU where LOGDATE=#{date } group by LOGHOUR
+    </select>
+
+    <resultMap id="hourDauList" type="java.util.Map"></resultMap>
+
+
+</mapper>
